@@ -72,6 +72,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
 
     implementation(project(":core:designsystem"))
+    implementation(project(":core:data"))
 
     implementation(project(":feature:dogs"))
     implementation(project(":feature:favorites"))

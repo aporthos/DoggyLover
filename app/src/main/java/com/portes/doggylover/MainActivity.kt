@@ -11,7 +11,9 @@ import com.portes.doggylover.core.designsystem.theme.DoggyLoverTheme
 import com.portes.doggylover.feature.onboarding.OnboardingScreen
 import com.portes.doggylover.navigation.HomeMainContainer
 import com.portes.doggylover.navigation.rememberDoggyLoverAppState
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

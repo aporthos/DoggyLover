@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    kotlin("kapt")
 }
 
 android {
@@ -40,6 +41,11 @@ android {
     buildFeatures {
         compose = true
     }
+
+    kotlinOptions.freeCompilerArgs +=
+        listOf(
+            "-Xopt-in=androidx.compose.material3.ExperimentalMaterial3Api",
+        )
 }
 
 dependencies {
@@ -47,4 +53,15 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.material3)
+
+    implementation(libs.hilt.android)
+    implementation(libs.hilt.navigation.compose)
+    kapt(libs.hilt.compiler)
+
+    implementation(libs.timber)
+
+    implementation(project(":core:domain"))
+    implementation(project(":core:common"))
+    implementation(project(":core:models:domain"))
+    implementation(project(":core:ui"))
 }

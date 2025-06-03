@@ -41,4 +41,7 @@ android {
 dependencies {
 
     implementation(libs.androidx.core.ktx)
+
+    implementation(libs.squareup.moshi)
+    implementation(libs.squareup.moshi.kotlin)
 }
