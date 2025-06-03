@@ -26,15 +26,36 @@ class DogsLocalDataSourceImpl
                 .map(List<DogEntity>::entityToDomains)
                 .flowOn(dispatcher)
 
+        override fun getFavoritesDogs(): Flow<List<Dog>> =
+            dogsDao
+                .getFavoritesDogs()
+                .map(List<DogEntity>::entityToDomains)
+                .flowOn(dispatcher)
+
         override suspend fun addDogs(dogs: List<DogNetwork>) {
             withContext(dispatcher) {
                 dogsDao.insertOrIgnore(dogs.networkToEntities())
             }
         }
+
+        override suspend fun setFavoriteDog(
+            name: String,
+            isFavorite: Int,
+        ): Boolean =
+            withContext(dispatcher) {
+                dogsDao.updateFavoriteDog(isFavorite, name) > 0
+            }
     }
 
 interface DogsLocalDataSource {
     fun getDogs(): Flow<List<Dog>>
 
+    fun getFavoritesDogs(): Flow<List<Dog>>
+
     suspend fun addDogs(dogs: List<DogNetwork>)
+
+    suspend fun setFavoriteDog(
+        name: String,
+        isFavorite: Int,
+    ): Boolean
 }

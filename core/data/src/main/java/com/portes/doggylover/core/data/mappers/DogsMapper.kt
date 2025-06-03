@@ -10,6 +10,7 @@ fun DogEntity.entityToDomain() =
         description = description,
         age = age,
         image = image,
+        isFavorite = isFavorite,
     )
 
 fun DogNetwork.networkToEntity() =
@@ -18,6 +19,7 @@ fun DogNetwork.networkToEntity() =
         description = description,
         age = age,
         image = image,
+        isFavorite = false,
     )
 
 fun List<DogEntity>.entityToDomains(): List<Dog> = map(DogEntity::entityToDomain)

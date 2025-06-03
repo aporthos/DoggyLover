@@ -47,6 +47,12 @@ dependencies {
 
     implementation(libs.lottie.compose)
 
+    implementation(libs.androidx.ui.tooling.preview)
+    debugImplementation(libs.androidx.ui.tooling)
+
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network)
+
     implementation(project(":core:designsystem"))
-    implementation(project(":core:models:domain"))
+    implementation(project(":core:models:ui"))
 }

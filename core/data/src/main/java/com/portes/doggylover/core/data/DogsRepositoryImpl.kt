@@ -28,4 +28,11 @@ class DogsRepositoryImpl
                     localDataSource.addDogs(items)
                 }
             }.asFlow()
+
+        override fun getFavoritesDogs(): Flow<List<Dog>> = localDataSource.getFavoritesDogs()
+
+        override suspend fun setFavoriteDog(
+            name: String,
+            isFavorite: Int,
+        ): Boolean = localDataSource.setFavoriteDog(name, isFavorite)
     }

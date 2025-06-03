@@ -47,7 +47,12 @@ fun DogsScreen(
                     is DogsUiState.Items -> {
                         LazyColumn {
                             items(dogsState.dogs) { item ->
-                                DogItem(item)
+                                DogItem(
+                                    dog = item,
+                                    onFavoriteClick = {
+                                        onEvents(DogsUiEvents.OnFavorite(item))
+                                    },
+                                )
                             }
                         }
                     }

@@ -20,4 +20,24 @@ interface DogsDao {
     """,
     )
     fun getDogs(): Flow<List<DogEntity>>
+
+    @Transaction
+    @Query(
+        value = """ 
+            SELECT * FROM dogs
+            WHERE isFavorite = :isFavorite
+    """,
+    )
+    fun getFavoritesDogs(isFavorite: Int = 1): Flow<List<DogEntity>>
+
+    @Query(
+        value = """
+            UPDATE dogs SET isFavorite = :isFavorite 
+            WHERE name = :name
+    """,
+    )
+    suspend fun updateFavoriteDog(
+        isFavorite: Int,
+        name: String,
+    ): Int
 }

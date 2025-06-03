@@ -2,6 +2,8 @@ package com.portes.doggylover.feature.dogs
 
 import androidx.lifecycle.viewModelScope
 import com.portes.doggylover.core.domain.GetDogsUseCase
+import com.portes.doggylover.core.domain.UpdateFavoriteDogUseCase
+import com.portes.doggylover.core.models.ui.domainToUis
 import com.portes.doggylover.core.ui.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
@@ -19,6 +21,7 @@ class DogsViewModel
     @Inject
     constructor(
         private val getDogsUseCase: GetDogsUseCase,
+        private val updateFavoriteDogUseCase: UpdateFavoriteDogUseCase,
     ) : BaseViewModel<DogsUiEvents, Nothing>() {
         private val isRefreshing = MutableStateFlow(false)
         val dogsState: StateFlow<DogsUiState> =
@@ -26,7 +29,7 @@ class DogsViewModel
                 .combine(getDogsUseCase(GetDogsUseCase.Params(false))) { isRefreshing, result ->
                     result.fold(
                         onSuccess = { dogs ->
-                            DogsUiState.Items(isRefreshing = isRefreshing, dogs = dogs)
+                            DogsUiState.Items(isRefreshing = isRefreshing, dogs = dogs.domainToUis())
                         },
                         onFailure = { DogsUiState.Error },
                     )
@@ -40,6 +43,16 @@ class DogsViewModel
             when (event) {
                 DogsUiEvents.OnRetry -> {}
                 DogsUiEvents.OnRefresh -> onRefresh()
+                is DogsUiEvents.OnFavorite -> updateFavoriteDog(event.dog.name, event.dog.isFavorite)
+            }
+        }
+
+        private fun updateFavoriteDog(
+            name: String,
+            isFavorite: Boolean,
+        ) {
+            viewModelScope.launch {
+                updateFavoriteDogUseCase(UpdateFavoriteDogUseCase.Params(name, !isFavorite))
             }
         }
 
@@ -47,7 +60,7 @@ class DogsViewModel
             viewModelScope.launch {
                 isRefreshing.emit(true)
                 getDogsUseCase(GetDogsUseCase.Params(true)).first()
-                delay(2000)
+                delay(1000)
                 isRefreshing.emit(false)
             }
         }

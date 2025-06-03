@@ -11,4 +11,5 @@ data class DogEntity(
     val description: String,
     val age: Int,
     val image: String,
+    val isFavorite: Boolean,
 )
