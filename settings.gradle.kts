@@ -21,8 +21,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "DoggyLover"
 include(":app")
-include(":feature:favorites")
-include(":feature:dogs")
 include(":core:common")
 include(":core:data")
 include(":core:database")
@@ -32,3 +30,6 @@ include(":core:models:entity")
 include(":core:models:network")
 include(":core:models:domain")
 include(":core:designsystem")
+include(":feature:favorites")
+include(":feature:dogs")
+include(":feature:onboarding")

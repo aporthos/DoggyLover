@@ -1,4 +1,4 @@
-package com.portes.doggylover.ui.theme
+package com.portes.doggylover.core.designsystem.theme
 
 import androidx.compose.ui.graphics.Color
 

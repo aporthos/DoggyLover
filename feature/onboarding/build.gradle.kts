@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.portes.doggylover.feature.dogs"
+    namespace = "com.portes.doggylover.feature.onboarding"
     compileSdk =
         libs.versions.compileSdk
             .get()
@@ -43,8 +43,6 @@ android {
 }
 
 dependencies {
-
-    implementation(libs.androidx.core.ktx)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.material3)
 }

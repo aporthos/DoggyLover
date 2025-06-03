@@ -1,4 +1,4 @@
-package com.portes.doggylover.ui.theme
+package com.portes.doggylover.core.designsystem.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
