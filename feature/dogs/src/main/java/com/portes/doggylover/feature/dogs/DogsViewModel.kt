@@ -3,8 +3,8 @@ package com.portes.doggylover.feature.dogs
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.viewModelScope
-import com.portes.doggylover.core.domain.GetDogsUseCase
-import com.portes.doggylover.core.domain.UpdateFavoriteDogUseCase
+import com.portes.doggylover.core.domain.usecases.GetDogsUseCase
+import com.portes.doggylover.core.domain.usecases.UpdateFavoriteDogUseCase
 import com.portes.doggylover.core.models.ui.domainToUis
 import com.portes.doggylover.core.ui.BaseViewModel
 import com.portes.doggylover.core.ui.InfoDialogState

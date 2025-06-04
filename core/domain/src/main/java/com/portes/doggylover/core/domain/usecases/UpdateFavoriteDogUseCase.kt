@@ -1,7 +1,8 @@
-package com.portes.doggylover.core.domain
+package com.portes.doggylover.core.domain.usecases
 
 import com.portes.doggylover.core.common.IoDispatcher
 import com.portes.doggylover.core.common.UseCase
+import com.portes.doggylover.core.domain.DogsRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Inject
 

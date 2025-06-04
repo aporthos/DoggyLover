@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="button_start">Empezar</string>
+    <string name="button_next">Siguiente</string>
+    <string name="button_skip">Saltar</string>
+    <string name="title_dogs">Perritos más famosos.</string>
+    <string name="message_dogs">Visualiza los perritos más famosos.</string>
+    <string name="title_favorites">Sección tus favoritos</string>
+    <string name="message_favorites">Guarda tus perritos favoritos :)</string>
+</resources>

@@ -27,7 +27,7 @@ fun EmptyScreen() {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
     ) {
-        val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(Designsystem.raw.error))
+        val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(Designsystem.raw.empty))
         val progress by animateLottieCompositionAsState(
             composition = composition,
             iterations = 1,

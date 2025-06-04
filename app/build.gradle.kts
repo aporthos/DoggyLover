@@ -73,6 +73,7 @@ dependencies {
 
     implementation(project(":core:designsystem"))
     implementation(project(":core:data"))
+    implementation(project(":core:domain"))
 
     implementation(project(":feature:dogs"))
     implementation(project(":feature:favorites"))

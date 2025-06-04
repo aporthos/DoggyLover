@@ -59,6 +59,7 @@ dependencies {
     implementation(libs.squareup.moshi.kotlin)
 
     implementation(libs.timber)
+    implementation(libs.androidx.datastore)
 
     implementation(project(":core:common"))
     implementation(project(":core:domain"))

@@ -13,6 +13,14 @@ import com.portes.doggylover.core.designsystem.R as Designsystem
 const val ROUTE_DOGS = "dogs"
 const val ROUTE_FAVORITES = "favorites"
 
+sealed class MainSections(
+    val route: String,
+) {
+    data object Home : MainSections("Home")
+
+    data object Onboarding : MainSections("Onboarding")
+}
+
 sealed class HomeSections(
     val title: Int,
     @DrawableRes val icon: Int,
