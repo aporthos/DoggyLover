@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_dogs">Dogs We Love</string>
+    <string name="message_retry">Retry</string>
+</resources>

@@ -1,6 +1,7 @@
 package com.portes.doggylover.feature.favorites
 
 import com.portes.doggylover.core.models.ui.DogUi
+import com.portes.doggylover.core.ui.ViewEffect
 import com.portes.doggylover.core.ui.ViewEvent
 
 sealed interface FavoritesUiState {
@@ -23,4 +24,10 @@ sealed interface DogsUiEvents : ViewEvent {
     ) : DogsUiEvents
 
     data object OnHideInfoDialog : DogsUiEvents
+
+    data object NavigateToDogs : DogsUiEvents
+}
+
+sealed interface DogsEffects : ViewEffect {
+    data object NavigateToDogs : DogsEffects
 }

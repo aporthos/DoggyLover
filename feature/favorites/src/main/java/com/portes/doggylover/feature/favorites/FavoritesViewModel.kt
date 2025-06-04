@@ -22,7 +22,7 @@ class FavoritesViewModel
     constructor(
         getFavoritesDogsUseCase: GetFavoritesDogsUseCase,
         private val updateFavoriteDogUseCase: UpdateFavoriteDogUseCase,
-    ) : BaseViewModel<DogsUiEvents, Nothing>() {
+    ) : BaseViewModel<DogsUiEvents, DogsEffects>() {
         private var _infoDialogState = mutableStateOf<InfoDialogState>(InfoDialogState.Hide)
         var infoDialogState: MutableState<InfoDialogState> = _infoDialogState
 
@@ -48,6 +48,7 @@ class FavoritesViewModel
                 }
 
                 DogsUiEvents.OnHideInfoDialog -> _infoDialogState.value = InfoDialogState.Hide
+                DogsUiEvents.NavigateToDogs -> setEffect { DogsEffects.NavigateToDogs }
             }
         }
 

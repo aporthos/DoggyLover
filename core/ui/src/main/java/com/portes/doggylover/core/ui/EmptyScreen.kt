@@ -2,7 +2,6 @@ package com.portes.doggylover.core.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -18,7 +17,7 @@ import com.airbnb.lottie.compose.rememberLottieComposition
 import com.portes.doggylover.core.designsystem.R as Designsystem
 
 @Composable
-fun EmptyScreen() {
+fun EmptyScreen(contentAction: @Composable () -> Unit) {
     Column(
         modifier =
             Modifier
@@ -33,14 +32,15 @@ fun EmptyScreen() {
             iterations = 1,
         )
 
-        Row {
-            LottieAnimation(
-                modifier =
-                    Modifier
-                        .size(150.dp),
-                composition = composition,
-                progress = { progress },
-            )
-        }
+//        Column {
+        LottieAnimation(
+            modifier =
+                Modifier
+                    .size(150.dp),
+            composition = composition,
+            progress = { progress },
+        )
+        contentAction()
+//        }
     }
 }

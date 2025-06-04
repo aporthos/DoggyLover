@@ -37,7 +37,9 @@ fun HomeMainContainer(items: List<HomeSections>) {
                     DogsScreen()
                 }
                 composable(HomeSections.Favorites.route) {
-                    FavoritesScreen()
+                    FavoritesScreen(navigateToDogs = {
+                        appState.navigateToBottomBarRoute(HomeSections.Dogs.route)
+                    })
                 }
             }
         },

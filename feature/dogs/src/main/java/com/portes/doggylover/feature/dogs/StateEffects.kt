@@ -9,7 +9,7 @@ sealed interface DogsUiState {
         val dogs: List<DogUi>,
     ) : DogsUiState
 
-    data object Error : DogsUiState
+    data object Empty : DogsUiState
 
     data object Loading : DogsUiState
 }

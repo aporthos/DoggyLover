@@ -36,9 +36,16 @@ class DogsViewModel
                 .combine(getDogsUseCase(GetDogsUseCase.Params(false))) { isRefreshing, result ->
                     result.fold(
                         onSuccess = { dogs ->
-                            DogsUiState.Items(isRefreshing = isRefreshing, dogs = dogs.domainToUis())
+                            if (dogs.isNotEmpty()) {
+                                DogsUiState.Items(
+                                    isRefreshing = isRefreshing,
+                                    dogs = dogs.domainToUis(),
+                                )
+                            } else {
+                                DogsUiState.Empty
+                            }
                         },
-                        onFailure = { DogsUiState.Error },
+                        onFailure = { DogsUiState.Empty },
                     )
                 }.stateIn(
                     scope = viewModelScope,
@@ -48,7 +55,7 @@ class DogsViewModel
 
         override fun onTriggerEvent(event: DogsUiEvents) {
             when (event) {
-                DogsUiEvents.OnRetry -> {}
+                DogsUiEvents.OnRetry -> onRefresh()
                 DogsUiEvents.OnRefresh -> onRefresh()
                 is DogsUiEvents.OnFavorite -> updateFavoriteDog(event.dog.name, event.dog.isFavorite)
                 is DogsUiEvents.OnShowInfoDialog -> {
