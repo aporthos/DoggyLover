@@ -19,6 +19,12 @@ sealed interface DogsUiEvents : ViewEvent {
 
     data object OnRetry : DogsUiEvents
 
+    data class OnShowInfoDialog(
+        val dog: DogUi,
+    ) : DogsUiEvents
+
+    data object OnHideInfoDialog : DogsUiEvents
+
     data class OnFavorite(
         val dog: DogUi,
     ) : DogsUiEvents

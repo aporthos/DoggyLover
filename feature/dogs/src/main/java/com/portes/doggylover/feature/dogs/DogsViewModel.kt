@@ -1,10 +1,13 @@
 package com.portes.doggylover.feature.dogs
 
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.viewModelScope
 import com.portes.doggylover.core.domain.GetDogsUseCase
 import com.portes.doggylover.core.domain.UpdateFavoriteDogUseCase
 import com.portes.doggylover.core.models.ui.domainToUis
 import com.portes.doggylover.core.ui.BaseViewModel
+import com.portes.doggylover.core.ui.InfoDialogState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -24,6 +27,10 @@ class DogsViewModel
         private val updateFavoriteDogUseCase: UpdateFavoriteDogUseCase,
     ) : BaseViewModel<DogsUiEvents, Nothing>() {
         private val isRefreshing = MutableStateFlow(false)
+
+        private var _infoDialogState = mutableStateOf<InfoDialogState>(InfoDialogState.Hide)
+        var infoDialogState: MutableState<InfoDialogState> = _infoDialogState
+
         val dogsState: StateFlow<DogsUiState> =
             isRefreshing
                 .combine(getDogsUseCase(GetDogsUseCase.Params(false))) { isRefreshing, result ->
@@ -44,6 +51,11 @@ class DogsViewModel
                 DogsUiEvents.OnRetry -> {}
                 DogsUiEvents.OnRefresh -> onRefresh()
                 is DogsUiEvents.OnFavorite -> updateFavoriteDog(event.dog.name, event.dog.isFavorite)
+                is DogsUiEvents.OnShowInfoDialog -> {
+                    _infoDialogState.value = InfoDialogState.Show(event.dog)
+                }
+
+                DogsUiEvents.OnHideInfoDialog -> _infoDialogState.value = InfoDialogState.Hide
             }
         }
 

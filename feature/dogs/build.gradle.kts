@@ -56,6 +56,8 @@ dependencies {
     implementation(libs.hilt.navigation.compose)
     kapt(libs.hilt.compiler)
 
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network)
     implementation(libs.timber)
 
     implementation(project(":core:domain"))
@@ -63,4 +65,5 @@ dependencies {
     implementation(project(":core:models:domain"))
     implementation(project(":core:models:ui"))
     implementation(project(":core:ui"))
+    implementation(project(":core:designsystem"))
 }

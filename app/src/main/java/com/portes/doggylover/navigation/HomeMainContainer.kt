@@ -16,27 +16,30 @@ import com.portes.doggylover.feature.favorites.FavoritesScreen
 fun HomeMainContainer(items: List<HomeSections>) {
     val appState = rememberDoggyLoverAppState()
     val backStackEntry by appState.navController.currentBackStackEntryAsState()
-    Scaffold(bottomBar = {
-        MainBottomAppBar(
-            navBackStackEntry = backStackEntry,
-            items = items,
-            navigateToRoute = appState::navigateToBottomBarRoute,
-        )
-    }, content = { paddingValues ->
-        NavHost(
-            modifier =
-                Modifier
-                    .padding(paddingValues)
-                    .consumeWindowInsets(paddingValues),
-            navController = appState.navController,
-            startDestination = HomeSections.Dogs.route,
-        ) {
-            composable(HomeSections.Dogs.route) {
-                DogsScreen()
+    Scaffold(
+        bottomBar = {
+            MainBottomAppBar(
+                navBackStackEntry = backStackEntry,
+                items = items,
+                navigateToRoute = appState::navigateToBottomBarRoute,
+            )
+        },
+        content = { paddingValues ->
+            NavHost(
+                modifier =
+                    Modifier
+                        .padding(paddingValues)
+                        .consumeWindowInsets(paddingValues),
+                navController = appState.navController,
+                startDestination = HomeSections.Dogs.route,
+            ) {
+                composable(HomeSections.Dogs.route) {
+                    DogsScreen()
+                }
+                composable(HomeSections.Favorites.route) {
+                    FavoritesScreen()
+                }
             }
-            composable(HomeSections.Favorites.route) {
-                FavoritesScreen()
-            }
-        }
-    })
+        },
+    )
 }

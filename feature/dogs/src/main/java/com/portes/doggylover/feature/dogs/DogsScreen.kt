@@ -14,12 +14,28 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.portes.doggylover.core.ui.DogItem
 import com.portes.doggylover.core.ui.EmptyScreen
+import com.portes.doggylover.core.ui.InfoDialog
+import com.portes.doggylover.core.ui.InfoDialogState
 import com.portes.doggylover.core.ui.LoadingScreen
 
 @Composable
 fun DogsScreen(viewModel: DogsViewModel = hiltViewModel()) {
     val dogsState by viewModel.dogsState.collectAsStateWithLifecycle()
+    val infoDialogState by viewModel.infoDialogState
+
     DogsScreen(dogsState, viewModel::onTriggerEvent)
+
+    if (infoDialogState is InfoDialogState.Show) {
+        InfoDialog(
+            dog = (infoDialogState as InfoDialogState.Show).dog,
+            onConfirm = {
+                viewModel.onTriggerEvent(DogsUiEvents.OnHideInfoDialog)
+            },
+            onDismiss = {
+                viewModel.onTriggerEvent(DogsUiEvents.OnHideInfoDialog)
+            },
+        )
+    }
 }
 
 @Composable
@@ -51,6 +67,9 @@ fun DogsScreen(
                                     dog = item,
                                     onFavoriteClick = {
                                         onEvents(DogsUiEvents.OnFavorite(item))
+                                    },
+                                    onClick = {
+                                        onEvents(DogsUiEvents.OnShowInfoDialog(item))
                                     },
                                 )
                             }
