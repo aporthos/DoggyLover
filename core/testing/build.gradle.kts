@@ -1,11 +1,10 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    kotlin("kapt")
 }
 
 android {
-    namespace = "com.portes.doggylover.core.domain"
+    namespace = "com.portes.doggylover.core.testing"
     compileSdk =
         libs.versions.compileSdk
             .get()
@@ -40,16 +39,14 @@ android {
 }
 
 dependencies {
-
-    implementation(libs.androidx.core.ktx)
-
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
-
-    testImplementation(libs.junit)
-    testImplementation(libs.mockito.kotlin)
-    testImplementation(libs.kotlinx.coroutines.test)
+    implementation(libs.junit)
+    implementation(libs.mockk)
+    implementation(libs.kotlinx.coroutines.test)
 
     implementation(project(":core:common"))
+    implementation(project(":core:domain"))
+    implementation(project(":core:models:ui"))
     implementation(project(":core:models:domain"))
+    implementation(project(":core:models:entity"))
+    implementation(project(":core:models:network"))
 }

@@ -60,10 +60,16 @@ dependencies {
     implementation(libs.coil.network)
     implementation(libs.timber)
 
+    testImplementation(libs.junit)
+    testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.turbine)
+
     implementation(project(":core:domain"))
     implementation(project(":core:common"))
     implementation(project(":core:models:domain"))
     implementation(project(":core:models:ui"))
     implementation(project(":core:ui"))
     implementation(project(":core:designsystem"))
+    implementation(project(":core:testing"))
 }

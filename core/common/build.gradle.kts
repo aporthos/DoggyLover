@@ -44,4 +44,7 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
+
+    implementation(libs.kotlinx.coroutines.test)
+    implementation(libs.junit)
 }

@@ -45,9 +45,6 @@ android {
 }
 
 dependencies {
-
-    implementation(libs.androidx.core.ktx)
-
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
 
@@ -61,10 +58,15 @@ dependencies {
     implementation(libs.timber)
     implementation(libs.androidx.datastore)
 
+    testImplementation(libs.junit)
+    testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.kotlinx.coroutines.test)
+
     implementation(project(":core:common"))
     implementation(project(":core:domain"))
     implementation(project(":core:database"))
     implementation(project(":core:models:domain"))
     implementation(project(":core:models:network"))
     implementation(project(":core:models:entity"))
+    implementation(project(":core:testing"))
 }

@@ -49,6 +49,11 @@ android {
         compose = true
         buildConfig = true
     }
+    testOptions {
+        packaging {
+            resources.excludes.add("META-INF/*")
+        }
+    }
 }
 
 dependencies {

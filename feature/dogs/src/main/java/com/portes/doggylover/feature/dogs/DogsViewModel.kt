@@ -79,7 +79,7 @@ class DogsViewModel
             viewModelScope.launch {
                 isRefreshing.emit(true)
                 getDogsUseCase(GetDogsUseCase.Params(true)).first()
-                delay(1000)
+                delay(100)
                 isRefreshing.emit(false)
             }
         }
